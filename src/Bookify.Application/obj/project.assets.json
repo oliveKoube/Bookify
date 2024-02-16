@@ -364,8 +364,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.atlantiss-ci.tech/nuget": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
@@ -423,35 +422,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1801",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Failed to retrieve information about 'FluentValidation.DependencyInjectionExtensions' from remote source 'https://nuget.atlantiss-ci.tech/nuget/FindPackagesById()?id='FluentValidation.DependencyInjectionExtensions'&semVerLevel=2.0.0'.",
-      "libraryId": "FluentValidation.DependencyInjectionExtensions"
-    },
-    {
-      "code": "NU1801",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Failed to retrieve information about 'FluentValidation.DependencyInjectionExtensions' from remote source 'https://nuget.atlantiss-ci.tech/nuget/FindPackagesById()?id='FluentValidation.DependencyInjectionExtensions'&semVerLevel=2.0.0'.",
-      "libraryId": "FluentValidation.DependencyInjectionExtensions"
-    },
-    {
-      "code": "NU1801",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Failed to retrieve information about 'Microsoft.Extensions.Logging.Abstractions' from remote source 'https://nuget.atlantiss-ci.tech/nuget/FindPackagesById()?id='Microsoft.Extensions.Logging.Abstractions'&semVerLevel=2.0.0'.",
-      "libraryId": "Microsoft.Extensions.Logging.Abstractions"
-    },
-    {
-      "code": "NU1801",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Failed to retrieve information about 'Microsoft.Extensions.Logging.Abstractions' from remote source 'https://nuget.atlantiss-ci.tech/nuget/FindPackagesById()?id='Microsoft.Extensions.Logging.Abstractions'&semVerLevel=2.0.0'.",
-      "libraryId": "Microsoft.Extensions.Logging.Abstractions"
-    }
-  ]
+  }
 }

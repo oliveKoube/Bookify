@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZAIaGBfi6BoR0V8AwW7JEcgRneweleg7EtOfTJk648z3J7K+m9bzgeiNiVlrr9hXrKucCxFHWLQeejT6TXyILg==",
+  "dgSpecHash": "hLxb2RiZr85TtfgdmjRKFARghHoI8y+BbonHUBZsE2rla+xzt7XXcy780JGByn8YgP8EA7HUgUz3VekWw0mb2Q==",
   "success": true,
   "projectFilePath": "D:\\PROJETS\\Bookify\\src\\Bookify.Application\\Bookify.Application.csproj",
   "expectedPackageFiles": [
@@ -12,34 +12,5 @@
     "C:\\Users\\olive.koube\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\olive.koube\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1801",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Failed to retrieve information about 'FluentValidation.DependencyInjectionExtensions' from remote source 'https://nuget.atlantiss-ci.tech/nuget/FindPackagesById()?id='FluentValidation.DependencyInjectionExtensions'&semVerLevel=2.0.0'.",
-      "libraryId": "FluentValidation.DependencyInjectionExtensions"
-    },
-    {
-      "code": "NU1801",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Failed to retrieve information about 'FluentValidation.DependencyInjectionExtensions' from remote source 'https://nuget.atlantiss-ci.tech/nuget/FindPackagesById()?id='FluentValidation.DependencyInjectionExtensions'&semVerLevel=2.0.0'.",
-      "libraryId": "FluentValidation.DependencyInjectionExtensions"
-    },
-    {
-      "code": "NU1801",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Failed to retrieve information about 'Microsoft.Extensions.Logging.Abstractions' from remote source 'https://nuget.atlantiss-ci.tech/nuget/FindPackagesById()?id='Microsoft.Extensions.Logging.Abstractions'&semVerLevel=2.0.0'.",
-      "libraryId": "Microsoft.Extensions.Logging.Abstractions"
-    },
-    {
-      "code": "NU1801",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Failed to retrieve information about 'Microsoft.Extensions.Logging.Abstractions' from remote source 'https://nuget.atlantiss-ci.tech/nuget/FindPackagesById()?id='Microsoft.Extensions.Logging.Abstractions'&semVerLevel=2.0.0'.",
-      "libraryId": "Microsoft.Extensions.Logging.Abstractions"
-    }
-  ]
+  "logs": []
 }
