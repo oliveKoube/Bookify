@@ -1,0 +1,7 @@
+/.vs
+/.containers
+bin
+obj
+/src/Bookify.Infrastructure/obj
+/src/Bookify.Domain/obj
+/src/Bookify.Application/obj
