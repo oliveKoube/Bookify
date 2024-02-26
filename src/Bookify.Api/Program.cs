@@ -1,8 +1,12 @@
 using Bookify.Api.Extensions;
 using Bookify.Application;
 using Bookify.Infrastructure;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog(((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration)));
 
 builder.Services.AddControllers();
 
@@ -19,13 +23,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 
-    app.ApplyMigrations();
+    //app.ApplyMigrations();
 
     // REMARK: Uncomment if you want to seed initial data.
     // app.SeedData();
 }
 
 app.UseHttpsRedirection();
+
+app.UseRequestContextLogging();
+
+app.UseSerilogRequestLogging();
 
 app.UseCustomExceptionHandler();
 
