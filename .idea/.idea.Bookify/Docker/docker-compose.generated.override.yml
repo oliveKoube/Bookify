@@ -22,9 +22,10 @@ services:
       RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
     image: "bookifyapi:dev"
     ports:
-    - "127.0.0.1:57000:57100"
-    - "127.0.0.1:57200:57300"
+    - "127.0.0.1:57001:57100"
+    - "127.0.0.1:57201:57300"
     volumes:
+    - "C:\\Users\\olive.koube\\AppData\\Roaming\\Microsoft\\UserSecrets:/home/app/.microsoft/usersecrets"
     - "C:\\Users\\olive.koube\\.nuget\\packages:/home/app/.nuget/packages"
     - "D:\\PROJETS\\Bookify\\src\\Bookify.Api:/app:rw"
     - "D:\\PROJETS\\Bookify:/src:rw"
@@ -33,5 +34,5 @@ services:
     - "C:\\Users\\olive.koube\\AppData\\Local\\JetBrains\\Toolbox\\apps\\Rider\\ch-0\\\
       233.14015.60\\bin:/etc/opt/rider-debugger/backend-log.xml"
     - "C:\\Users\\olive.koube\\AppData\\Local\\JetBrains\\Rider2023.3\\log\\DebuggerWorker\\\
-      JetBrains.Debugger.Worker.2024_2_21_13_17_39:/var/opt/rider-debugger:rw"
+      JetBrains.Debugger.Worker.2024_2_23_19_04_17:/var/opt/rider-debugger:rw"
     working_dir: "/app"
