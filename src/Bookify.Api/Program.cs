@@ -8,8 +8,8 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.UseSerilog(((context, configuration) =>
-    configuration.ReadFrom.Configuration(context.Configuration)));
+builder.Host.UseSerilog((context, loggerConfig) =>
+    loggerConfig.ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddControllers();
 
@@ -28,7 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-       var descriptions = app.DescribeApiVersions();
+        var descriptions = app.DescribeApiVersions();
 
         foreach (var description in descriptions)
         {
@@ -38,7 +38,7 @@ if (app.Environment.IsDevelopment())
         }
     });
 
-    //app.ApplyMigrations();
+    app.ApplyMigrations();
 
     // REMARK: Uncomment if you want to seed initial data.
     // app.SeedData();
@@ -58,7 +58,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapHealthChecks("/health", new HealthCheckOptions
+app.MapHealthChecks("health", new HealthCheckOptions
 {
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });

@@ -1,4 +1,4 @@
-﻿using Bookify.Application.Caching;
+﻿using Bookify.Application.Abstractions.Caching;
 using Bookify.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,13 +17,12 @@ internal sealed class AuthorizationService
 
     public async Task<UserRolesResponse> GetRolesForUserAsync(string identityId)
     {
-        var cacheKey = $"auth-roles-{identityId}";
+        var cacheKey = $"auth:roles-{identityId}";
+        var cachedRoles = await _cacheService.GetAsync<UserRolesResponse>(cacheKey);
 
-        var cacheRoles = await _cacheService.GetAsync<UserRolesResponse>(cacheKey);
-
-        if (cacheRoles is not null)
+        if (cachedRoles is not null)
         {
-            return cacheRoles;
+            return cachedRoles;
         }
 
         var roles = await _dbContext.Set<User>()
@@ -36,18 +35,18 @@ internal sealed class AuthorizationService
             .FirstAsync();
 
         await _cacheService.SetAsync(cacheKey, roles);
+
         return roles;
     }
 
     public async Task<HashSet<string>> GetPermissionsForUserAsync(string identityId)
     {
-        var cacheKey = $"auth-permissions-{identityId}";
+        var cacheKey = $"auth:permissions-{identityId}";
+        var cachedPermissions = await _cacheService.GetAsync<HashSet<string>>(cacheKey);
 
-        var cachePermissions = await _cacheService.GetAsync<HashSet<string>>(cacheKey);
-
-        if (cachePermissions is not null)
+        if (cachedPermissions is not null)
         {
-            return cachePermissions;
+            return cachedPermissions;
         }
 
         var permissions = await _dbContext.Set<User>()
@@ -55,10 +54,10 @@ internal sealed class AuthorizationService
             .SelectMany(u => u.Roles.Select(r => r.Permissions))
             .FirstAsync();
 
-        var permissionSet = permissions.Select(p => p.Name).ToHashSet();
+        var permissionsSet = permissions.Select(p => p.Name).ToHashSet();
 
-        await _cacheService.SetAsync(cacheKey, permissionSet);
+        await _cacheService.SetAsync(cacheKey, permissionsSet);
 
-        return permissionSet;
+        return permissionsSet;
     }
 }

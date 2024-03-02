@@ -22,11 +22,16 @@ public sealed class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenO
         }
     }
 
+    public void Configure(string? name, SwaggerGenOptions options)
+    {
+        Configure(options);
+    }
+
     private static OpenApiInfo CreateVersionInfo(ApiVersionDescription apiVersionDescription)
     {
         var openApiInfo = new OpenApiInfo
         {
-            Title = $"Bookify Api v{apiVersionDescription.ApiVersion}",
+            Title = $"Bookify.Api v{apiVersionDescription.ApiVersion}",
             Version = apiVersionDescription.ApiVersion.ToString()
         };
 
@@ -36,10 +41,5 @@ public sealed class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenO
         }
 
         return openApiInfo;
-    }
-
-    public void Configure(string? name, SwaggerGenOptions options)
-    {
-        Configure(options);
     }
 }

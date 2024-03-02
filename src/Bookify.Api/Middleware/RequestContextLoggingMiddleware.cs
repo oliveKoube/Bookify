@@ -1,31 +1,26 @@
-﻿using Serilog.Context;
+﻿using Microsoft.Extensions.Primitives;
+using Serilog.Context;
 
-namespace Bookify.Api.Middleware
+namespace Bookify.Api.Middleware;
+
+public class RequestContextLoggingMiddleware(RequestDelegate next)
 {
-    public class RequestContextLoggingMiddleware
+    private const string CorrelationIdHeaderName = "X-Correlation-Id";
+
+    public Task Invoke(HttpContext context)
     {
-        private readonly RequestDelegate _next;
-        private const string CorrelationIdHeaderName = "X-Correlation-ID";
-
-        public RequestContextLoggingMiddleware(RequestDelegate next)
+        using (LogContext.PushProperty("CorrelationId", GetCorrelationId(context)))
         {
-            _next = next;
+            return next.Invoke(context);
         }
+    }
 
-        public Task Invoke(HttpContext context)
-        {
-            using (LogContext.PushProperty("CorrelationId", GetCorrelationId(context)))
-            {
-                return _next(context);
-            }
-        }
+    private static string GetCorrelationId(HttpContext context)
+    {
+        context.Request.Headers.TryGetValue(
+            CorrelationIdHeaderName,
+            out StringValues correlationId);
 
-        private static string GetCorrelationId(HttpContext context)
-        {
-            context.Request.Headers.TryGetValue(CorrelationIdHeaderName, out var correlationId);
-
-            return correlationId.FirstOrDefault() ?? context.TraceIdentifier;
-
-        }
+        return correlationId.FirstOrDefault() ?? context.TraceIdentifier;
     }
 }

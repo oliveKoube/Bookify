@@ -9,7 +9,7 @@ namespace Bookify.Api.Controllers.Reviews;
 [Authorize]
 [ApiController]
 [ApiVersion(ApiVersions.V1)]
-[Route("api/v[version.apiVersion]/reviews")]
+[Route("api/v{version:apiVersion}/reviews")]
 public class ReviewsController : ControllerBase
 {
     private readonly ISender _sender;
