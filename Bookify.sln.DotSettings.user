@@ -1,9 +1,5 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\olive.koube\AppData\Local\JetBrains\Rider2023.3\resharper-host\temp\Rider\vAny\CoverageData\_Bookify.24587625\Snapshot\snapshot.utdcvr</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9a3c254d_002D455a_002D42bd_002D9ac0_002D11e02579bbef/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Create_Should_SetPropertyValues" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::7AEE1331-5532-4571-9F57-D14ABF72BDBE::net8.0::Bookify.Domain.UnitTests.Users.UserTests.Create_Should_SetPropertyValues&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::7AEE1331-5532-4571-9F57-D14ABF72BDBE::net8.0::Bookify.Domain.UnitTests.Users.UserTests.Create_Should_RaiseUserCreatedDomainEvent&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::7AEE1331-5532-4571-9F57-D14ABF72BDBE::net8.0::Bookify.Domain.UnitTests.Users.UserTests.Create_Should_AddRoleRegisteredRoleToUser&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::7AEE1331-5532-4571-9F57-D14ABF72BDBE::net8.0::Bookify.Domain.UnitTests.Bookings.PricingServicesTest&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
