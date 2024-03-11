@@ -23,13 +23,13 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restore
-        run: dotnet restore ${{ env.SOLUTION_PATH }}
+        run: dotnet restore ./Bookify.sln
 
       - name: Build
-        run: dotnet build ${{ env.SOLUTION_PATH }} --configuration Release --no-restore
+        run: dotnet build ./Bookify.sln --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test ${{ env.SOLUTION_PATH }} --configuration Release --no-restore --no-build
+        run: dotnet test ./Bookify.sln --configuration Release --no-restore --no-build
 
       - name: Publish
-        run: dotnet publish ${{ env.SOLUTION_PATH }} --configuration Release --no-restore --no-build
+        run: dotnet publish ./Bookify.sln --configuration Release --no-restore --no-build
