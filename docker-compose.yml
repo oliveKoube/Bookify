@@ -33,7 +33,7 @@ services:
       - ./.containers/identity:/opt/jboss/keycloak/standalone/data
       - ./.files/bookify-realm-export.json:/tmp/bookify-realm-export.json
     ports:
-    - 18080:8080
+      - 18080:8080
 
   bookify-seq:
     image: datalust/seq:latest
@@ -49,4 +49,4 @@ services:
     container_name: Bookify.Redis
     restart: always
     ports:
-      - 6379:6379
+      - '6379:6379'
