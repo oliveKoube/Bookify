@@ -7,7 +7,7 @@ on:
       - master
 
 env:
-  DOTNET_VERSION: "8.0.x"
+  DOTNET_VERSION: "8.x"
   SOLUTION_PATH: "./Bookify.sln"
 
 jobs:
