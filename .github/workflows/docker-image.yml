@@ -7,7 +7,7 @@ on:
       - master
 
 env:
-  DOTNET_VERSION: "8.x"
+  DOTNET_VERSION: "8.0.x"
   SOLUTION_PATH: "./Bookify.sln"
 
 jobs:
@@ -23,13 +23,13 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restore
-        run: dotnet restore ./Bookify.sln
+        run: dotnet restore ${{ env.SOLUTION_PATH }}
 
       - name: Build
-        run: dotnet build ./Bookify.sln --configuration Release --no-restore
+        run: dotnet build ${{ env.SOLUTION_PATH }} --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test ./Bookify.sln --configuration Release --no-restore --no-build
+        run: dotnet test ${{ env.SOLUTION_PATH }} --configuration Release --no-restore --no-build
 
       - name: Publish
-        run: dotnet publish ./Bookify.sln --configuration Release --no-restore --no-build
+        run: dotnet publish ${{ env.SOLUTION_PATH }} --configuration Release --no-restore --no-build
