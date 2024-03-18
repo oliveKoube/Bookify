@@ -165,7 +165,7 @@ public static class DependencyInjection
 
     private static void AddBackgroundJobs(IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<OutboxOptions>(configuration.GetSection("Outbox"));
+        services.Configure<OutboxOptions>(configuration.GetSection(OutboxOptions.Key));
 
         services.AddQuartz();
 
