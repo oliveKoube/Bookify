@@ -3,36 +3,20 @@ version: "3.4"
 services:
   bookify.api:
     build:
-      context: "D:\\PROJETS\\Bookify"
+      context: "D:\\Projets\\Bookify"
       dockerfile: "src/Bookify.Api/Dockerfile"
       target: "base"
-      args:
-        BUILD_CONFIGURATION: "Debug"
     command: []
     entrypoint:
-    - "/opt/rider-debugger/linux-x64/dotnet/dotnet"
-    - "/opt/rider-debugger/JetBrains.Debugger.Worker.exe"
-    - "--mode=server"
-    - "--frontend-port=57100"
-    - "--backend-port=57300"
-    - "--timeout=60"
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/Bookify.Api.dll"
     environment:
       DOTNET_USE_POLLING_FILE_WATCHER: "true"
-      RIDER_DEBUGGER_LOG_DIR: "/var/opt/rider-debugger"
-      RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
     image: "bookifyapi:dev"
-    ports:
-    - "127.0.0.1:57001:57100"
-    - "127.0.0.1:57201:57300"
+    ports: []
     volumes:
-    - "C:\\Users\\olive.koube\\AppData\\Roaming\\Microsoft\\UserSecrets:/home/app/.microsoft/usersecrets"
-    - "C:\\Users\\olive.koube\\.nuget\\packages:/home/app/.nuget/packages"
-    - "D:\\PROJETS\\Bookify\\src\\Bookify.Api:/app:rw"
-    - "D:\\PROJETS\\Bookify:/src:rw"
-    - "C:\\Users\\olive.koube\\AppData\\Local\\JetBrains\\RiderRemoteDebugger\\2023.3.3\\\
-      Linux64:/opt/rider-debugger"
-    - "C:\\Users\\olive.koube\\AppData\\Local\\JetBrains\\Toolbox\\apps\\Rider\\ch-0\\\
-      233.14015.60\\bin:/etc/opt/rider-debugger/backend-log.xml"
-    - "C:\\Users\\olive.koube\\AppData\\Local\\JetBrains\\Rider2023.3\\log\\DebuggerWorker\\\
-      JetBrains.Debugger.Worker.2024_2_23_19_04_17:/var/opt/rider-debugger:rw"
+    - "C:\\Users\\olive\\AppData\\Roaming\\Microsoft\\UserSecrets:/home/app/.microsoft/usersecrets"
+    - "C:\\Users\\olive\\.nuget\\packages:/home/app/.nuget/packages"
+    - "D:\\Projets\\Bookify\\src\\Bookify.Api:/app:rw"
+    - "D:\\Projets\\Bookify:/src:rw"
     working_dir: "/app"
