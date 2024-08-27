@@ -1,11 +1,17 @@
 ﻿using Bookify.Application.Abstractions.Email;
+using FluentEmail.Core;
 
 namespace Bookify.Infrastructure.Email;
 
-internal sealed class EmailService : IEmailService
+internal sealed class EmailService(IFluentEmail fluentEmail) : IEmailService
 {
-    public Task SendAsync(Domain.Users.Email recipient, string subject, string body)
+    private readonly IFluentEmail _fluentEmail = fluentEmail;
+    public async Task SendAsync(Domain.Users.Email recipient, string subject, string body)
     {
-        return Task.CompletedTask;
+        await _fluentEmail
+            .To(recipient.Value)
+            .Subject(subject)
+            .Body(body)
+            .SendAsync();
     }
 }

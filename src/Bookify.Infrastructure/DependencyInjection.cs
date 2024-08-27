@@ -40,7 +40,7 @@ public static class DependencyInjection
     {
         services.AddTransient<IDateTimeProvider, DateTimeProvider>();
 
-        services.AddTransient<IEmailService, EmailService>();
+
 
         AddPersistence(services, configuration);
 
@@ -55,6 +55,8 @@ public static class DependencyInjection
         AddApiVersioning(services);
 
         AddBackgroundJobs(services, configuration);
+
+        AddEmail(services,configuration);
 
         return services;
     }
@@ -172,5 +174,12 @@ public static class DependencyInjection
         services.AddQuartzHostedService(options => options.WaitForJobsToComplete = true);
 
         services.ConfigureOptions<ProcessOutboxMessagesJobSetup>();
+    }
+
+    private static void AddEmail(IServiceCollection services,IConfiguration configuration)
+    {
+        services.AddTransient<IEmailService, EmailService>();
+        services.AddFluentEmail(configuration["EmailSettings:SenderEmail"], configuration["EmailSettings:Sender"])
+            .AddSmtpSender(configuration["EmailSettings:Host"], configuration.GetValue<int>("EmailSettings:Port"));
     }
 }

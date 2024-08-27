@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.9'
 
 services:
   bookify.api:
@@ -20,7 +20,7 @@ services:
     volumes:
       - ./.containers/database:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - "5432:5432"
 
   bookify-idp:
     image: jboss/keycloak:latest
@@ -33,7 +33,7 @@ services:
       - ./.containers/identity:/opt/jboss/keycloak/standalone/data
       - ./.files/bookify-realm-export.json:/tmp/bookify-realm-export.json
     ports:
-      - 18080:8080
+      - "18080:8080"
 
   bookify-seq:
     image: datalust/seq:latest
@@ -41,8 +41,8 @@ services:
     environment:
       - ACCEPT_EULA=Y
     ports:
-      - 5341:5341
-      - 8081:80
+      - "5341:5341"
+      - "8081:80"
 
   bookify-redis:
     image: redis:latest
@@ -50,3 +50,10 @@ services:
     restart: always
     ports:
       - '6379:6379'
+
+  bookify-papercut:
+    image: changemakerstudiosus/papercut-smtp:latest
+    container_name: Bookify.Papercut
+    ports:
+      - "8080:80"
+      - "25:25"
