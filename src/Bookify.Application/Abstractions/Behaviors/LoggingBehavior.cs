@@ -47,8 +47,7 @@ internal sealed class LoggingBehavior<TRequest, TResponse>
         catch (Exception exception)
         {
             _logger.LogError(exception, "Request {RequestName} processing failed", requestName);
-
-            throw;
+            throw new Exception("Request processing failed", exception);
         }
     }
 }

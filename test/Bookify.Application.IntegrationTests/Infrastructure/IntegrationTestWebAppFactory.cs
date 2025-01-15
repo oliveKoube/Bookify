@@ -39,7 +39,7 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
     {
         builder.ConfigureTestServices(services =>
         {
-            services.RemoveAll(typeof(DbContextOptions<ApplicationDbContext>));
+            services.RemoveAll<DbContextOptions<ApplicationDbContext>>();
 
             string connectionString = $"{_dbContainer.GetConnectionString()};Pooling=False";
 
@@ -48,7 +48,7 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
                     .UseNpgsql(connectionString)
                     .UseSnakeCaseNamingConvention());
 
-            services.RemoveAll(typeof(ISqlConnectionFactory));
+            services.RemoveAll<ISqlConnectionFactory>();
 
             services.AddSingleton<ISqlConnectionFactory>(_ =>
                 new SqlConnectionFactory(connectionString));
