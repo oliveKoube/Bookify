@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   bookify.api:
     image: ${DOCKER_REGISTRY-}bookifyapi

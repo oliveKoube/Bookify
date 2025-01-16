@@ -10,7 +10,8 @@ internal sealed class JwtService : IJwtService
 {
     private static readonly Error AuthenticationFailed = new(
         "Keycloak.AuthenticationFailed",
-        "Failed to acquire access token do to authentication failure");
+        "Failed to acquire access token do to authentication failure",
+        ErrorType.Failure);
 
     private readonly HttpClient _httpClient;
     private readonly KeycloakOptions _keycloakOptions;

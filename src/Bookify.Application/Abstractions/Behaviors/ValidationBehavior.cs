@@ -1,7 +1,11 @@
-﻿using Bookify.Application.Abstractions.Messaging;
+﻿using System.Reflection;
+using Bookify.Application.Abstractions.Messaging;
 using Bookify.Application.Exceptions;
+using Bookify.Domain.Abstractions;
 using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
+using ValidationException = FluentValidation.ValidationException;
 
 namespace Bookify.Application.Abstractions.Behaviors;
 
@@ -28,20 +32,41 @@ internal sealed class ValidationBehavior<TRequest, TResponse>
 
         var context = new ValidationContext<TRequest>(request);
 
-        var validationErrors = _validators
-            .Select(validator => validator.Validate(context))
+        ValidationResult[] validationResults = await Task.WhenAll(
+            _validators.Select(validator => validator.ValidateAsync(context, cancellationToken)));
+
+        ValidationFailure[] validationFailures = validationResults
             .Where(validationResult => validationResult.Errors.Any())
             .SelectMany(validationResult => validationResult.Errors)
-            .Select(validationFailure => new ValidationError(
-                validationFailure.PropertyName,
-                validationFailure.ErrorMessage))
-            .ToList();
+            .ToArray();
 
-        if (validationErrors.Any())
+        if (validationFailures.Length == 0)
         {
-            throw new Exceptions.ValidationException(validationErrors);
+            await next();
         }
 
-        return await next();
+        var validationErrors = new ValidationError(validationFailures
+            .Select(x => Error.Problem(x.ErrorCode, x.ErrorMessage)).ToArray());
+
+        if (typeof(TResponse).IsGenericType &&
+            typeof(TResponse).GetGenericTypeDefinition() == typeof(Result<>))
+        {
+            Type resultType = typeof(TResponse).GetGenericArguments()[0];
+
+            MethodInfo? failureMethod = typeof(Result<>)
+                .MakeGenericType(resultType)
+                .GetMethod(nameof(Result<object>.ValidationFailure));
+
+            if (failureMethod is not null)
+            {
+                return (TResponse)failureMethod.Invoke(null, [validationErrors]);
+            }
+        }
+        else if (typeof(TResponse) == typeof(Result))
+        {
+            return (TResponse)(object)Result.Failure(validationErrors);
+        }
+
+        throw new ValidationException(validationFailures);
     }
 }
