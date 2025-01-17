@@ -5,7 +5,8 @@ using Bookify.Application.Users.LogInUser;
 
 namespace Bookify.Api.FunctionalTests.Infrastructure;
 
-public abstract class BaseFunctionalTest : IClassFixture<FunctionalTestWebAppFactory>
+[Collection(nameof(FuctionalTestCollection))]
+public abstract class BaseFunctionalTest
 {
     protected readonly HttpClient HttpClient;
 
