@@ -42,7 +42,7 @@ internal sealed class ValidationBehavior<TRequest, TResponse>
 
         if (validationFailures.Length == 0)
         {
-            await next();
+            return await next();
         }
 
         var validationErrors = new ValidationError(validationFailures
